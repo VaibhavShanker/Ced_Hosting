@@ -12,6 +12,8 @@
 					<script src="js/jquery-1.11.1.min.js"></script>
 					<script src="js/bootstrap.js"></script>
 					<!---fonts-->
+					<meta name="viewport" content="width=device-width, initial-scale=1">
+					<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 					<link href='//fonts.googleapis.com/css?family=Voltaire' rel='stylesheet' type='text/css'>
 					<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 					<!---fonts-->
@@ -62,28 +64,35 @@
 									<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services<i class="caret"></i></a>
 											<ul class="dropdown-menu">												
-												<li><a href="faq.html">FAQ's</a></li>
-												<li><a href="testimonials.html">Testimonials</a></li>
-												<li><a href="history.html">History</a></li>
-												<li><a href="support.html">Support</a></li>
-												<li><a href="templatesetting.html">Template setting</a></li>												
-												<li><a href="portfolio.html">Portfolio</a></li>
+												<li><a href="#">FAQ's</a></li>
+												<li><a href="#">Testimonials</a></li>
+												<li><a href="#">History</a></li>
+												<li><a href="#">Support</a></li>
+												<li><a href="#">Template setting</a></li>												
+												<li><a href="#">Portfolio</a></li>
 											</ul>
 										</li> 
-									 <!-- <li><a href="services.php">Services</a></li>  -->
 									<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hosting<i class="caret"></i></a>
 										<ul class="dropdown-menu">
-											<li><a href="linuxhosting.html">Linux hosting</a></li>
-											<li><a href="wordpresshosting.html">WordPress Hosting</a></li>
-											<li><a href="windowshosting.html">Windows Hosting</a></li>
-											<li><a href="cmshosting.html">CMS Hosting</a></li>
-										</ul>			
+										<?php	
+											require 'classes/product.php';				
+											$productparent=new product();
+											$connection=new Dbconnect();
+											$productparent1=$productparent->productParent($connection->conn);
+											foreach($productparent1 as $key=>$row2) {
+											 if($row2['prod_parent_id']==1) {
+												echo "<li><a href=".$row2['link'].">".$row2['prod_name']."</a></li>";
+												// echo "<option value=".$row2['id']." >".$row2['prod_name']."</option>";
+											}
+											}
+										?>
+										</ul>									
 									</li>
 									<li><a href="blog.php">Blog</a></li>
 									<li><a href="pricing.php">Pricing</a></li>																	
 									<li><a href="contact.php">Contact</a></li>
-									<li><a href="cart.php"><i class="w3-xxlarge fa fa-shopping-cart"></i>Cart(icon)</a></li>
+									<li><a href="cart.php"><i class="w3-xxlarge fa fa-shopping-cart fa-fw"></i></a></li>
 									<li><a href="login.php">Login</a></li>
 								</ul>										
 							</div><!-- /.navbar-collapse -->

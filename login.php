@@ -1,16 +1,20 @@
+<?php
+require 'header.php';
+?>
 <?php	
-	require 'user.php';		
+	require 'classes/user.php';	
 	$error=array();
 	if (isset($_POST['submit'])) {
 		$name=isset($_POST['email'])?$_POST['email']:'';
 		$password=isset($_POST['password'])?$_POST['password']:'';
 		$user=new user();
-		$connection=new Dbconnect();
-		$show=$user->Login($name,$password,$connection->conn);    
+		$connection1=new Dbconnect();
+		$show=$user->Login($name,$password,$connection1->conn);    
 		echo $show;
 	}
-	require 'header.php';
+	
 ?>
+
 		<!---login--->
 			<div class="content">
 				<div class="main-1">
