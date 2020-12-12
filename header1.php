@@ -76,27 +76,14 @@
 									
 							<li class="dropdown <?php if(in_array($file[0],$hostingmenu)):?>active<?php  endif; ?>">
 								<a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hosting<i class="caret"></i></a>
+							
+								
 								<ul class="dropdown-menu">
-								<?php 
-								 require_once 'classes/product.php';                                 
-                                  $productparent=new product();
-                                  $connection=new Dbconnect();
-                                  $productparent1=$productparent->productParent($connection->conn);
-                                  foreach($productparent1 as $key=>$row2) {
-                                  if($row2['prod_parent_id']==1) {
-								echo "<li><a href='$row2[link]'>$row2[prod_name]</a></li>";
-									// echo "<option value=" >""</option>";
-									// query_close($conn);
-                                  }
-                                  }
-                            	?>
-								</ul>	
-								<!-- <ul class="dropdown-menu">
 									<li class="<?php if($file[0]=="linuxhosting.php"):?>active<?php  endif; ?>"><a href="linuxhosting.php">Linux hosting</a></li>
 									<li class="<?php if($file[0]=="wordpresshosting.php"):?>active<?php  endif; ?>"><a href="wordpresshosting.php">WordPress Hosting</a></li>
 									<li class="<?php if($file[0]=="windowshosting.php"):?>active<?php  endif; ?>"><a href="windowshosting.php">Windows Hosting</a></li>
 									<li class="<?php if($file[0]=="cmshosting.php"):?>active<?php  endif; ?>"><a href="cmshosting.php">CMS Hosting</a></li>
-								</ul>			 -->
+								</ul>			
 						    </li>
 								
 							

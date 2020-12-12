@@ -1,17 +1,33 @@
 <?php
 require 'classes/otp.class.php';
-session_start();
+require 'classes/user.php';
+// session_start();
+$useremail = $_SESSION['userdata']['email'];
+$votp = $_SESSION['votp'];
 if(isset($_POST['submit'])){
     $otp=$_POST['otp'];
-    // echo $otp;
+if($votp === $otp)
+        {
+            $con = mysqli_connect("localhost", "root", "", "cedhosting");
+            if (!$con) {
+              die('Could not connect: ' . mysqli_error($con));
+            } 
+            $sql = " UPDATE tbl_user SET `email_approved`='1', `active`='1' WHERE `email`='$useremail' ";  
+            if ($con->query($sql) === TRUE)  {
+            $success = true;
+            session_destroy();
+            }
+        }
+        else
+        {
+            $error = true;
+        }    
 }
 ?> 
 <?php
 require 'header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,7 +61,8 @@ require 'header.php';
 </head>
 <body>
 <div class="login-form">
-    <form action="ty.php" method="post">
+    <form action="verifyotp.php" method="post">
+    <!-- <form action="ty.php" method="post"> -->
         <h3 style="font-size: 20px;" class="text-center">Enter OTP</h3>  
         <div class="form-group">
             <input type="text" name="otp" class="form-control" placeholder="OTP" required="required">
@@ -54,6 +71,14 @@ require 'header.php';
             <button type="submit" name="submit" class="btn btn-primary btn-block">Verify</button>
             <a class="btn btn-primary btn-block" href="newotp.php";>Resend OTP</a>
         </div>
+        <?php if(isset($error)) {?>
+        <div class="alert alert-danger" role="alert"> Verification failed! </div>
+        <?php } ?>
+        
+        <?php if(isset($success)) {?>
+        <div class="alert alert-success" role="alert"> Verification success! </div>
+        <?php } ?> 
+        
     </form>
 </div>
 <?php

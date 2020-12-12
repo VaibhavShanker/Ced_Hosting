@@ -44,7 +44,7 @@
                         <i class="ni ni-fat-add"></i>
                         <span>Add Product</span>
                       </a>
-                      <a href="#!" class="dropdown-item">
+                      <a href="view_product.php" class="dropdown-item">
                         <i class="ni ni-archive-2"></i>
                         <span>View Products</span>
                       </a>

@@ -31,22 +31,21 @@ class user
 
             if ($row['email']==$email && $row['password']==$password) {
                 if ($row['is_admin']==1) {
-                    $_SESSION['userdata']=array('userid'=>$row['email'],
-                    'email'=>$row['user_name'],'name'=>$row['name']);  
-                    
+                    $_SESSION['userdata']=array('userid'=>$row['id'],
+                    'email'=>$row['email'],'name'=>$row['name']);                    
                     header('Location:./admin/index.php'); 
                 } 
-                else if($row['is_admin']==0 && $row['active']==1){
+                else if($row['is_admin']==0 && $row['active']==0){
 
-                    $_SESSION['userdata']=array('userid'=>$row['email'],
-                    'email'=>$row['user_name'],'name'=>$row['name'],'userno'=>$row['mobile']);  
+                    $_SESSION['userdata']=array('userid'=>$row['id'],
+                    'email'=>$row['email'],'name'=>$row['name'],'userno'=>$row['mobile']);  
                     echo  "<script>alert('Email/Mobile No. Verification needed, With Out verify no access for LogIn');window.location='newotp.php';</script>";
                     
                     // header('Location:');
-                }else if($row['is_admin']==0 && $row['active']==0){
+                }else if($row['is_admin']==0 && $row['active']==1){
 
-                    $_SESSION['userdata']=array('userid'=>$row['email'],
-                    'email'=>$row['user_name'],'name'=>$row['name'],'userno'=>$row['mobile']);  
+                    $_SESSION['userdata']=array('userid'=>$row['id'],
+                    'email'=>$row['email'],'name'=>$row['name'],'userno'=>$row['mobile']);  
                     header('Location:./admin/addprod.php');
                 }
 

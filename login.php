@@ -1,6 +1,3 @@
-<?php
-require 'header.php';
-?>
 <?php	
 	require 'classes/user.php';	
 	$error=array();
@@ -8,13 +5,15 @@ require 'header.php';
 		$name=isset($_POST['email'])?$_POST['email']:'';
 		$password=isset($_POST['password'])?$_POST['password']:'';
 		$user=new user();
-		$connection1=new Dbconnect();
-		$show=$user->Login($name,$password,$connection1->conn);    
+		$connection=new Dbconnect();
+		$show=$user->Login($name,$password,$connection->conn);    
 		echo $show;
 	}
 	
 ?>
-
+<?php
+require 'header1.php';
+?>
 		<!---login--->
 			<div class="content">
 				<div class="main-1">

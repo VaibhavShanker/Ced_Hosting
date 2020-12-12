@@ -1,7 +1,7 @@
 <?php
       session_start();
       if(isset($_SESSION['userdata'])) {
-          echo "<script>alert(".$_SESSION['userdata']['userid'].");</script>";
+        echo $_SESSION['userdata']['userid'];
       } else {
         header("Location: ../index.php");
       }

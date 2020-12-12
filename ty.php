@@ -1,24 +1,29 @@
     <?php 
     
-    session_start();
-    $useremail = $_SESSION['userdata']['userid'];
+    // session_start();
+    require 'classes/user.php';
+    $useremail = $_SESSION['userdata']['email'];
     $votp = $_SESSION['votp'];
     if(isset($_POST['submit'])){
         $votp = $_SESSION['votp'];
         $otp=$_POST['otp'];
         // echo $votp;
     if($votp === $otp)
-            {
-                $sql = "UPDATE tbl_user SET `active`='1', `email_approved`='1'; WHERE `email`='$useremail'";  
-                if ($con->query($sql) === TRUE)  {
-                $success = true;
-                session_destroy();
-                }
-            }
-            else
-            {
-                $error = true;
-            }               
+    {
+        $con = mysqli_connect("localhost", "root", "", "cedhosting");
+        if (!$con) {
+          die('Could not connect: ' . mysqli_error($con));
+        } 
+        $sql = " UPDATE tbl_user SET `email_approved`='1', `active`='1' WHERE `email`='$useremail' ";  
+        if ($con->query($sql) === TRUE)  {
+        $success = true;
+        session_destroy();
+        }
+    }
+    else
+    {
+        $error = true;
+    }                
     }
      ?>    
      <?php    
