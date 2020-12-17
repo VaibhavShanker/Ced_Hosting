@@ -1,11 +1,4 @@
-<?php
-      session_start();
-      if(isset($_SESSION['userdata'])) {
-        echo $_SESSION['userdata']['userid'];
-      } else {
-        header("Location: ../index.php");
-      }
-?>
+
   <?php
    require "header.php";
   ?>

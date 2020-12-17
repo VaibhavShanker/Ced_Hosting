@@ -1,4 +1,4 @@
-<?php
+<?php	
 	require 'classes/user.php';
 	$error=array();
 	if (isset($_POST['submit'])) {		
@@ -16,14 +16,8 @@
 		$show=$user->register($name,$mobile,$username,$password,$confirmpassword,$security_question,$security_answer,$date,$connection->conn);
 		echo $show;
 	}
-	 
-	// require 'header.php';
 ?>
-<?php
-	require 'header1.php';
-?>
-	
-
+	<?php require 'header1.php'; ?>
 
 	<!---login--->
 	<div class="content">
@@ -157,7 +151,7 @@
 			if(fchar==0) {
 				$('#mobile').attr('maxlength','11');
 				$('#mobile').attr('minlength','11');
-				if(count_mob==10) {
+				if(count_mob==12) {
 					for(i=1;i<11;i++) {
 						var a=$("#mobile").val().substr(i,1);
 						var b=$("#mobile").val().substr(i+1,1);
@@ -182,8 +176,8 @@
 				$('#mobile').attr('maxlength','10');
 				$('#mobile').attr('minlength','10');
 				console.log(count_mob);
-				if(count_mob==10) {
-				for(i=0;i<10;i++) {
+				if(count_mob==11) {
+				for(i=0;i<=10;i++) {
 					var a=$("#mobile").val().substr(i,1);
 					var b=$("#mobile").val().substr(i+1,1);
 					if(a==b) {

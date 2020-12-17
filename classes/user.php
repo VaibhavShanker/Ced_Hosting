@@ -115,10 +115,23 @@ class user
         }
 
 
+        function productParent($conn) 
+        {
+            $arr=array();
+            $sql="SELECT * from tbl_product";
+            $result = $conn->query($sql);
+            if($result->num_rows >0) {
+            while($row=$result->fetch_assoc()) {        
+            array_push($arr, $row);
+            }
+            return $arr;
+            }                
+        }
 
 
 
-        
+
+
        
 }
 

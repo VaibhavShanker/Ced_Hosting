@@ -58,33 +58,25 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 								<ul class="nav navbar-nav">
-									
-
-
-
-
-
-
-
 								<li class="<?php if($file[0]=="index.php"):?>active<?php  endif; ?>"><a href="index.php">Home <i class="sr-only">(current)</i></a></li>
 								<li class="<?php if($file[0]=="about.php"):?>active<?php  endif; ?>"><a href="about.php">About</a></li>
 								
 								
 								<li class="<?php if($file[0]=="services.php"):?>active<?php  endif; ?>">
-				<a href="services.php" >Services</a>
+									<a href="services.php" >Services</a>
 								</li>
 									
 							<li class="dropdown <?php if(in_array($file[0],$hostingmenu)):?>active<?php  endif; ?>">
 								<a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hosting<i class="caret"></i></a>
 								<ul class="dropdown-menu">
 								<?php 
-								 require_once 'classes/product.php';                                 
-                                  $productparent=new product();
-                                  $connection=new Dbconnect();
+							      require_once 'classes/product.php';                          
+								  $productparent=new product();
+								  $connection=new Dbconnect();
                                   $productparent1=$productparent->productParent($connection->conn);
                                   foreach($productparent1 as $key=>$row2) {
                                   if($row2['prod_parent_id']==1) {
-								echo "<li><a href='$row2[link]'>$row2[prod_name]</a></li>";
+								echo "<li><a href='catpage.php?id=$row2[id]'>$row2[prod_name]</a></li>";
 									// echo "<option value=" >""</option>";
 									// query_close($conn);
                                   }
